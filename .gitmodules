@@ -1,0 +1,3 @@
+[submodule "chrome_extension/time_goal_cursor_website"]
+	path = chrome_extension/time_goal_cursor_website
+	url = https://github.com/theikbhal/time-goal-cursor-website.git
