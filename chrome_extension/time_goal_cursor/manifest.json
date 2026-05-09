@@ -4,9 +4,19 @@
   "version": "1.0",
   "description": "Stay aware of the time and upcoming Namaz while deeply focused. Attaches a subtle clock to your cursor.",
   "permissions": ["storage"],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Settings"
+    "default_title": "Settings",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
   },
   "content_scripts": [
     {
