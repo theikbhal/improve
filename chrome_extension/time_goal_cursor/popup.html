@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cursor Time Settings</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Cursor Time Tracker</h2>
+      <label class="switch">
+        <input type="checkbox" id="toggle-switch" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+    
+    <div class="form-group">
+      <label for="goal-icon">Icon (Emoji)</label>
+      <input type="text" id="goal-icon" maxlength="2" placeholder="🎯" value="🎯">
+    </div>
+
+    <div class="form-group">
+      <label for="goal-text">Current Goal (Max 5 letters)</label>
+      <input type="text" id="goal-text" maxlength="5" placeholder="FOCUS" value="FOCUS">
+    </div>
+
+    <div class="form-group">
+      <label for="goal-notes">Notes / Context</label>
+      <textarea id="goal-notes" placeholder="Why is this important right now?"></textarea>
+    </div>
+    
+    <div class="status-msg" id="status-msg">Saved automatically.</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
