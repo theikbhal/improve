@@ -14,6 +14,18 @@
         <span class="slider round"></span>
       </label>
     </div>
+
+    <!-- Visibility Toggles -->
+    <div class="visibility-section">
+      <label class="check-container">Show Goal
+        <input type="checkbox" id="show-goal" checked>
+        <span class="checkmark"></span>
+      </label>
+      <label class="check-container">Show Counters
+        <input type="checkbox" id="show-counters" checked>
+        <span class="checkmark"></span>
+      </label>
+    </div>
     
     <div class="form-group">
       <label for="goal-icon">Icon (Emoji)</label>
@@ -25,9 +37,51 @@
       <input type="text" id="goal-text" maxlength="5" placeholder="FOCUS" value="FOCUS">
     </div>
 
+    <div class="counters-section">
+      <div class="counter-group">
+        <div class="counter-header">
+          <label class="check-container">Thanks (T)
+            <input type="checkbox" id="show-thanks" checked>
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="counter-controls">
+          <button id="thanks-minus">-</button>
+          <span id="thanks-display">0</span>
+          <button id="thanks-plus">+</button>
+        </div>
+        <div class="shortcut-setting">
+          <label>Key:</label>
+          <input type="text" id="thanks-shortcut" maxlength="1" value="t">
+        </div>
+      </div>
+      <div class="counter-group">
+        <div class="counter-header">
+          <label class="check-container">Sorry (S)
+            <input type="checkbox" id="show-sorry" checked>
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="counter-controls">
+          <button id="sorry-minus">-</button>
+          <span id="sorry-display">0</span>
+          <button id="sorry-plus">+</button>
+        </div>
+        <div class="shortcut-setting">
+          <label>Key:</label>
+          <input type="text" id="sorry-shortcut" maxlength="1" value="s">
+        </div>
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="goal-notes">Notes / Context</label>
       <textarea id="goal-notes" placeholder="Why is this important right now?"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="detailed-context">Action Plan / Details</label>
+      <textarea id="detailed-context" placeholder="What exactly are you doing?"></textarea>
     </div>
     
     <div class="status-msg" id="status-msg">Saved automatically.</div>
