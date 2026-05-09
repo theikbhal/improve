@@ -35,6 +35,11 @@ window.electronAPI.onUpdateCounters((data) => {
     }
 });
 
+window.electronAPI.onUpdateGoal((newGoal) => {
+    goalTextEl.innerText = newGoal;
+    bumpElement(goalTextEl);
+});
+
 function bumpElement(el) {
     el.classList.remove('update-bump');
     void el.offsetWidth; // Trigger reflow

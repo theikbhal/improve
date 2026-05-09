@@ -1,6 +1,9 @@
 const { app, BrowserWindow, screen, Tray, Menu, globalShortcut, ipcMain } = require('electron');
 const path = require('path');
-const Store = require('electron-store');
+let Store = require('electron-store');
+if (typeof Store !== 'function' && Store.default) {
+  Store = Store.default;
+}
 
 const store = new Store();
 
@@ -18,7 +21,8 @@ const defaults = {
   thanksShortcut: 'Alt+T',
   sorryShortcut: 'Alt+S',
   offsetX: 20,
-  offsetY: 20
+  offsetY: 20,
+  hasSeenOnboarding: false
 };
 
 // Initialize store with defaults if empty
@@ -93,12 +97,54 @@ function createTray() {
         mainWindow.webContents.send('update-counters', { thanks: 0, sorry: 0 });
       } 
     },
+    {
+      label: 'Change Goal',
+      click: () => {
+        const { x, y } = screen.getCursorScreenPoint();
+        let promptWindow = new BrowserWindow({
+          width: 300,
+          height: 120,
+          frame: false,
+          alwaysOnTop: true,
+          webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+          }
+        });
+        promptWindow.setPosition(x, y);
+        promptWindow.loadURL(`data:text/html,
+          <body style="-webkit-app-region: drag; font-family: sans-serif; padding: 20px; background: #1a1a1a; color: white;">
+            <div style="margin-bottom: 10px;">Enter New Goal:</div>
+            <input id="i" style="width: 100%; padding: 5px; margin-bottom: 10px;" value="${store.get('goalText')}">
+            <button onclick="require('electron').ipcRenderer.send('set-goal', document.getElementById('i').value); window.close()">Save</button>
+            <button onclick="window.close()">Cancel</button>
+          </body>
+        `);
+      }
+    },
+    { type: 'separator' },
+    { label: 'How to Use', click: showHelpWindow },
     { type: 'separator' },
     { label: 'Quit', click: () => app.quit() }
   ]);
 
   tray.setToolTip('Cursor Time Tracker');
   tray.setContextMenu(contextMenu);
+}
+
+function showHelpWindow() {
+  let helpWindow = new BrowserWindow({
+    width: 500,
+    height: 600,
+    title: 'How to Use',
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+  });
+  helpWindow.loadFile('help.html');
+  helpWindow.setAlwaysOnTop(true);
 }
 
 function registerShortcuts() {
@@ -125,6 +171,12 @@ app.whenReady().then(() => {
   createTray();
   registerShortcuts();
 
+  // Onboarding check
+  if (!store.get('hasSeenOnboarding')) {
+    showHelpWindow();
+    store.set('hasSeenOnboarding', true);
+  }
+
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
@@ -141,4 +193,9 @@ ipcMain.on('get-settings', (event) => {
 
 ipcMain.on('save-settings', (event, newSettings) => {
   store.set(newSettings);
+});
+
+ipcMain.on('set-goal', (event, newGoal) => {
+  store.set('goalText', newGoal);
+  mainWindow.webContents.send('update-goal', newGoal);
 });

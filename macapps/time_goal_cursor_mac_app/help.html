@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use - Cursor Time Tracker</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 30px;
+            margin: 0;
+            line-height: 1.6;
+        }
+        h1 { font-weight: 800; color: #38bdf8; margin-top: 0; }
+        .section { margin-bottom: 25px; background: rgba(30, 41, 59, 0.5); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .shortcut { background: #334155; padding: 2px 8px; border-radius: 4px; font-family: monospace; color: #7dd3fc; }
+        .btn { display: inline-block; background: #38bdf8; color: #0f172a; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; }
+        .btn:hover { background: #7dd3fc; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Cursor Tracker! 🌙</h1>
+    
+    <div class="section">
+        <h3>🚀 Quick Start</h3>
+        <p>This app attaches a subtle time and goal tracker to your cursor that stays visible across ALL windows.</p>
+    </div>
+
+    <div class="section">
+        <h3>⌨️ Shortcuts (Global)</h3>
+        <p><span class="shortcut">Option + T</span> : Increment <strong>Thanks</strong> Counter</p>
+        <p><span class="shortcut">Option + S</span> : Increment <strong>Sorry</strong> Counter</p>
+    </div>
+
+    <div class="section">
+        <h3>⚙️ Settings</h3>
+        <p>Right-click the <strong>Moon Icon</strong> in your macOS menu bar to:</p>
+        <ul>
+            <li>Change your current Focus Goal</li>
+            <li>Reset your daily counters</li>
+            <li>Enable/Disable the tracker</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>🔒 Permissions</h3>
+        <p>If shortcuts aren't working, please ensure <strong>Accessibility</strong> is enabled for this app in <em>System Settings > Privacy & Security</em>.</p>
+    </div>
+
+    <div style="text-align: center;">
+        <button class="btn" onclick="window.close()">Got it!</button>
+    </div>
+</body>
+</html>
